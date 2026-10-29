@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171519">
+<title>Ficha de actores | Apolo Creativo</title>
+<style>
+:root{--bg:#171519;--panel:#211e24;--panel2:#29242e;--gold:#d4b16a;--gold2:#f0d69a;--purple:#8c62b5;--text:#f6f1e9;--muted:#b9b0bd;--line:#49404d;--danger:#ffb4ab}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top left,#302535 0,transparent 38%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+header{padding:38px 18px 28px;text-align:center;border-bottom:1px solid #493a4b;background:linear-gradient(135deg,rgba(140,98,181,.12),rgba(212,177,106,.06))}
+.brand{font-family:Georgia,'Times New Roman',serif;letter-spacing:.12em;color:var(--gold2);font-size:clamp(28px,5vw,43px);font-weight:bold}
+.brand small{display:block;font:11px Arial,sans-serif;letter-spacing:.32em;color:var(--muted);margin-top:5px}
+header p{max-width:720px;margin:18px auto 0;color:#ded5df}
+.wrap{width:min(920px,calc(100% - 28px));margin:28px auto 56px}
+.notice{border:1px solid #59466b;background:rgba(140,98,181,.11);padding:14px 16px;border-radius:12px;color:#e6dcec;font-size:14px;margin-bottom:22px}
+.progress-wrap{position:sticky;top:0;z-index:5;background:rgba(23,21,25,.95);backdrop-filter:blur(10px);padding:12px 0}
+.progress-line{height:5px;background:#39313d;border-radius:9px;overflow:hidden}
+#progress{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--gold));transition:width .2s}
+.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:7px}
+section{background:rgba(33,30,36,.96);border:1px solid var(--line);border-radius:16px;padding:clamp(17px,3vw,28px);margin:18px 0;box-shadow:0 8px 24px #00000016}
+h2{font-size:19px;color:var(--gold2);margin:0 0 5px;letter-spacing:.02em}
+.section-help{font-size:13px;color:var(--muted);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+label,.legend{display:block;font-size:13px;font-weight:bold;margin-bottom:6px;color:#eee4f0}
+input,select,textarea{width:100%;background:#171519;border:1px solid #514755;border-radius:9px;color:var(--text);padding:12px 13px;font:inherit;font-size:14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px #d4b16a20}
+input::placeholder,textarea::placeholder{color:#8e8492}
+textarea{min-height:95px;resize:vertical}
+.small{font-size:12px;color:var(--muted);margin-top:5px}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.check{display:flex;align-items:flex-start;gap:9px;font-size:13px;font-weight:normal;background:#19171c;border:1px solid #423946;border-radius:9px;padding:10px}
+.check input{width:auto;margin-top:4px;accent-color:var(--gold)}
+button{font:inherit;cursor:pointer}
+.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.submit{border:0;border-radius:10px;background:linear-gradient(100deg,#d4b16a,#f0d69a);color:#211b20;font-weight:bold;padding:15px 24px;min-width:190px}
+.submit:hover{filter:brightness(1.06)}
+.reset{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.privacy{font-size:12px;color:var(--muted);max-width:650px}
+footer{text-align:center;color:#958a99;font-size:12px;padding:25px 10px;border-top:1px solid #39313d}
+footer a{color:var(--gold2)}
+.required{color:var(--gold)}
+#status{display:none;border-radius:10px;padding:14px;margin-top:16px}
+#status.error{display:block;background:#4a2529;color:#ffe2e0;border:1px solid #82464c}
+#status.ok{display:block;background:#243b30;color:#d9ffe6;border:1px solid #3c7454}
+.hp{position:absolute;left:-5000px}
+@media(max-width:640px){.grid,.checks{grid-template-columns:1fr}.field.full{grid-column:auto}.wrap{width:min(100% - 20px,920px)}header{padding-top:28px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">APOLO<small>CREATIVO</small></div>
+  <p>Ficha de incorporación artística · Teatro y audiovisual</p>
+  <p style="font-size:13px;color:#b9b0bd">Completá tus datos para que podamos conocerte, evaluar tu perfil y preparar tu biografía artística.</p>
+</header>
+<main class="wrap">
+  <div class="notice"><strong>Antes de empezar:</strong> completá los campos obligatorios y respondé lo que corresponda a tu trayectoria. Si una pregunta no aplica a tu caso, podés dejarla vacía. La información de esta ficha será recibida por Apolo Creativo para fines de casting, organización artística y, si lo autorizás, publicación de tu perfil.</div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Tu ficha</span><span id="progressText">0% completado</span></div>
+    <div class="progress-line"><div id="progress"></div></div>
+  </div>
+  <form id="actorForm" action="https://formsubmit.co/apolocreativo.ok@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Nueva ficha de actor/actriz — Apolo Creativo">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_next" value="">
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <section>
+      <h2>01 · Datos personales</h2><p class="section-help">Información básica para contactarte y registrar tu perfil.</p>
+      <div class="grid">
+        <div class="field"><label for="nombre">Nombre <span class="required">*</span></label><input id="nombre" name="Nombre" required autocomplete="given-name"></div>
+        <div class="field"><label for="apellido">Apellido <span class="required">*</span></label><input id="apellido" name="Apellido" required autocomplete="family-name"></div>
+        <div class="field"><label for="artistico">Nombre artístico</label><input id="artistico" name="Nombre artístico"></div>
+        <div class="field"><label for="nacimiento">Fecha de nacimiento</label><input id="nacimiento" name="Fecha de nacimiento" type="date"></div>
+        <div class="field"><label for="edad">Edad</label><input id="edad" name="Edad" type="number" min="1" max="120"></div>
+        <div class="field"><label for="ciudad">Ciudad / provincia de residencia</label><input id="ciudad" name="Residencia"></div>
+        <div class="field"><label for="telefono">Teléfono / WhatsApp <span class="required">*</span></label><input id="telefono" name="Teléfono / WhatsApp" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="email">Correo electrónico <span class="required">*</span></label><input id="email" name="Correo del actor/actriz" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="idiomas">Idiomas que hablás</label><input id="idiomas" name="Idiomas"></div>
+        <div class="field"><label for="ocupacion">Ocupación actual (opcional)</label><input id="ocupacion" name="Ocupación actual"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>02 · Perfil físico y habilidades</h2><p class="section-help">Estos datos son opcionales y se utilizarán solo si resultan pertinentes para castings, vestuario o necesidades de producción.</p>
+      <div class="grid">
+        <div class="field"><label for="altura">Altura (cm)</label><input id="altura" name="Altura en cm" type="number" min="50" max="250" placeholder="Ej.: 172"></div>
+        <div class="field"><label for="peso">Peso (kg) — opcional</label><input id="peso" name="Peso en kg" type="number" min="20" max="300"></div>
+        <div class="field"><label for="ojos">Color de ojos</label><input id="ojos" name="Color de ojos"></div>
+        <div class="field"><label for="cabello">Color / características del cabello</label><input id="cabello" name="Color y características del cabello"></div>
+        <div class="field"><label for="remera">Talla de remera (opcional)</label><input id="remera" name="Talla de remera"></div>
+        <div class="field"><label for="pantalon">Talla de pantalón (opcional)</label><input id="pantalon" name="Talla de pantalón"></div>
+        <div class="field"><label for="calzado">Talla de calzado (opcional)</label><input id="calzado" name="Talla de calzado"></div>
+        <div class="field"><label for="movilidad">Habilidades físicas / movimiento</label><input id="movilidad" name="Habilidades físicas"></div>
+        <div class="field full"><label for="necesidades">¿Hay alguna necesidad de accesibilidad o consideración para ensayos que quieras compartir? (opcional)</label><textarea id="necesidades" name="Necesidades de accesibilidad" placeholder="Compartí solo lo que consideres necesario para organizar el trabajo."></textarea></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>03 · Formación artística y estudios</h2><p class="section-help">Incluí escuelas, docentes, talleres, cursos y años aproximados.</p>
+      <div class="grid">
+        <div class="field full"><label for="formacion">Formación actoral, instituciones y docentes</label><textarea id="formacion" name="Formación actoral" placeholder="Institución, docente, curso, años..."></textarea></div>
+        <div class="field full"><label for="otrosCursos">Otros cursos y formación artística</label><textarea id="otrosCursos" name="Otros cursos artísticos" placeholder="Canto, danza, improvisación, clown, cámara, voz, etc."></textarea></div>
+        <div class="field full"><label for="estudios">Otros estudios académicos o profesionales (opcional)</label><textarea id="estudios" name="Otros estudios"></textarea></div>
+        <div class="field full"><label for="actual">¿Actualmente estás estudiando alguna disciplina artística?</label><textarea id="actual" name="Estudios actuales"></textarea></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>04 · Experiencia teatral</h2><p class="section-help">Detallá tus trabajos, del más reciente al más antiguo. Si necesitás espacio, agregá toda la información en el cuadro.</p>
+      <div class="grid">
+        <div class="field full"><label for="teatro">Obras, personajes, compañía, sala, director/a y año</label><textarea id="teatro" name="Experiencia teatral" placeholder="Obra — personaje — compañía/productora — sala/ciudad — dirección — año/temporada. Una producción por línea." rows="7"></textarea></div>
+        <div class="field full"><label for="otrasArtes">Experiencia en dirección, asistencia, dramaturgia, producción, teatro musical o giras</label><textarea id="otrasArtes" name="Otras experiencias escénicas"></textarea></div>
+        <div class="field full"><label for="premios">Premios o reconocimientos (opcional)</label><textarea id="premios" name="Premios y reconocimientos"></textarea></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>05 · Experiencia audiovisual</h2><p class="section-help">Incluí cine, cortos, series, publicidad, videoclips, locución y otros trabajos frente a cámara.</p>
+      <div class="grid">
+        <div class="field full"><label for="audiovisual">Producciones, personaje, productora, dirección, año y plataforma</label><textarea id="audiovisual" name="Experiencia audiovisual" rows="6" placeholder="Proyecto — tipo de producción — personaje — productora/dirección — año — enlace, si existe."></textarea></div>
+        <div class="field full"><label for="enlacesAudiovisuales">Enlaces a escenas, cortometrajes, videobook o reel</label><textarea id="enlacesAudiovisuales" name="Enlaces audiovisuales" placeholder="Pegá enlaces de YouTube, Vimeo, Drive u otras plataformas. Revisá que los permisos permitan verlos."></textarea></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>06 · Habilidades complementarias</h2><p class="section-help">Marcá todas las que correspondan y detallá otras al final.</p>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="Habilidades" value="Canto"> Canto</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Danza"> Danza</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Instrumentos musicales"> Instrumentos musicales</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Improvisación"> Improvisación</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Comedia física / clown"> Comedia física / clown</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Imitaciones / acentos"> Imitaciones / acentos</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Idiomas"> Idiomas</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Deportes"> Deportes</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Artes marciales / acrobacia"> Artes marciales / acrobacia</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Manejo de vehículos"> Manejo de vehículos</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Manejo de herramientas"> Manejo de herramientas</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Locución / doblaje"> Locución / doblaje</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Fotografía / edición"> Fotografía / edición</label>
+        <label class="check"><input type="checkbox" name="Habilidades" value="Escritura / dramaturgia"> Escritura / dramaturgia</label>
+      </div>
+      <div class="field" style="margin-top:15px"><label for="otrasHabilidades">Otras habilidades o conocimientos</label><textarea id="otrasHabilidades" name="Otras habilidades"></textarea></div>
+    </section>
+
+    <section>
+      <h2>07 · Perfil artístico y biografía</h2><p class="section-help">Tus respuestas nos ayudarán a redactar una presentación auténtica para el sitio web y los dossiers de Apolo Creativo.</p>
+      <div class="grid">
+        <div class="field full"><label for="estilo">¿Cómo describirías tu estilo actoral y tus principales fortalezas?</label><textarea id="estilo" name="Estilo actoral y fortalezas"></textarea></div>
+        <div class="field full"><label for="generos">¿Qué géneros y tipos de personajes te interesan?</label><textarea id="generos" name="Géneros y personajes"></textarea></div>
+        <div class="field full"><label for="historia">¿Cómo comenzó tu relación con el teatro o la actuación?</label><textarea id="historia" name="Inicio en la actuación"></textarea></div>
+        <div class="field full"><label for="destacados">¿Qué trabajos, experiencias o reconocimientos te gustaría destacar?</label><textarea id="destacados" name="Experiencias destacadas"></textarea></div>
+        <div class="field full"><label for="motivacion">¿Qué te motiva a formar parte de Apolo Creativo y qué buscás desarrollar?</label><textarea id="motivacion" name="Motivación para Apolo Creativo"></textarea></div>
+        <div class="field full"><label for="referentes">Referentes artísticos o algo más que te gustaría que conozcamos</label><textarea id="referentes" name="Referentes y observaciones"></textarea></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>08 · Fotografías, redes y material profesional</h2><p class="section-help">En esta ficha podés pegar enlaces. No envíes documentos privados ni enlaces con información personal innecesaria.</p>
+      <div class="grid">
+        <div class="field full"><label for="fotoRostro">Enlace a fotografía de rostro</label><input id="fotoRostro" name="Enlace foto de rostro" type="url" placeholder="https://..."></div>
+        <div class="field full"><label for="fotoCuerpo">Enlace a fotografía de cuerpo entero</label><input id="fotoCuerpo" name="Enlace foto cuerpo entero" type="url" placeholder="https://..."></div>
+        <div class="field full"><label for="cv">Enlace a CV o portfolio artístico</label><input id="cv" name="Enlace CV o portfolio" type="url" placeholder="https://..."></div>
+        <div class="field full"><label for="reel">Enlace a videobook / reel / video de presentación</label><input id="reel" name="Enlace videobook" type="url" placeholder="https://..."></div>
+        <div class="field"><label for="instagram">Instagram profesional</label><input id="instagram" name="Instagram" placeholder="@usuario o enlace"></div>
+        <div class="field"><label for="tiktok">TikTok (opcional)</label><input id="tiktok" name="TikTok" placeholder="@usuario o enlace"></div>
+        <div class="field full"><label for="otrosLinks">Otros enlaces profesionales</label><textarea id="otrosLinks" name="Otros enlaces"></textarea></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>09 · Disponibilidad</h2><p class="section-help">Esta información nos ayuda a convocarte para proyectos compatibles con tus horarios.</p>
+      <div class="grid">
+        <div class="field full"><label for="dias">Días y horarios disponibles para ensayos</label><textarea id="dias" name="Disponibilidad para ensayos" required placeholder="Ej.: lunes y miércoles después de las 18:00; sábados por la mañana."></textarea></div>
+        <div class="field full"><label for="fechas">Viajes, compromisos o fechas en las que no estarías disponible</label><textarea id="fechas" name="Fechas no disponibles"></textarea></div>
+        <div class="field full"><label for="otrasProducciones">¿Participás actualmente en otras producciones o estudiás/trabajás en horarios fijos?</label><textarea id="otrasProducciones" name="Otras producciones y compromisos"></textarea></div>
+        <div class="field full"><label for="traslados">¿Tenés disponibilidad para trasladarte a ensayos, funciones o giras?</label><select id="traslados" name="Disponibilidad de traslado"><option value="">Elegí una opción</option><option> Sí, dentro de Córdoba Capital</option><option> Sí, también para viajar</option><option> Depende de las fechas y condiciones</option><option> Necesito coordinarlo previamente</option></select></div>
+        <div class="field full"><label for="promocion">¿Tenés disponibilidad para fotos, entrevistas y videos promocionales?</label><select id="promocion" name="Disponibilidad promocional"><option value="">Elegí una opción</option><option>Sí</option><option>Con coordinación previa</option><option>Depende de la actividad</option></select></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>10 · Publicación y confirmación</h2><p class="section-help">La autorización para publicar tu perfil es independiente de tu postulación artística.</p>
+      <div class="field">
+        <label class="check"><input type="checkbox" name="Autorización de publicación" value="Sí, autorizo la publicación de mi nombre artístico, biografía y material que apruebe" required> Autorizo a Apolo Creativo a utilizar mi nombre artístico, biografía y los enlaces o materiales que expresamente facilite para la difusión de mi perfil profesional en sus canales. Entiendo que puedo consultar o solicitar cambios sobre el contenido publicado.</label>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label class="check"><input type="checkbox" name="Confirmación de información" value="Confirmo que la información es correcta" required> Confirmo que la información que proporcioné es correcta y que puedo compartir los materiales y enlaces incluidos.</label>
+      </div>
+      <div class="field" style="margin-top:15px"><label for="comentarios">Comentarios finales (opcional)</label><textarea id="comentarios" name="Comentarios finales"></textarea></div>
+      <div class="actions">
+        <button class="submit" type="submit" id="submitBtn">ENVIAR MI FICHA&nbsp; ↗</button>
+        <button class="reset" type="reset">Borrar respuestas</button>
+      </div>
+      <p class="privacy">Los datos se enviarán mediante un servicio externo de formularios al correo de Apolo Creativo. No incluyas DNI, datos bancarios ni información sensible en esta ficha. La recepción quedará habilitada una vez que se confirme el correo de activación del servicio.</p>
+      <div id="status" role="status" aria-live="polite"></div>
+    </section>
+  </form>
+</main>
+<footer>
+  <strong style="color:#d4b16a;letter-spacing:.12em">APOLO CREATIVO</strong><br>
+  Teatro · Audiovisual · Producción<br>
+  <a href="https://apolocreativo.site">apolocreativo.site</a> · Córdoba, Argentina
+</footer>
+<script>
+const form=document.getElementById('actorForm');
+const fields=[...form.querySelectorAll('input:not([type=hidden]):not([type=checkbox]):not([type=submit]), textarea, select')];
+function updateProgress(){
+  const answered=fields.filter(el=>String(el.value||'').trim()!=='').length;
+  const pct=Math.round(answered/fields.length*100);
+  document.getElementById('progress').style.width=pct+'%';
+  document.getElementById('progressText').textContent=pct+'% completado';
+}
+fields.forEach(el=>{el.addEventListener('input',updateProgress);el.addEventListener('change',updateProgress)});
+form.addEventListener('reset',()=>setTimeout(updateProgress,0));
+form.addEventListener('submit',function(e){
+  const status=document.getElementById('status');
+  if(!form.checkValidity()){return}
+  const email=document.getElementById('email').value.trim();
+  if(!email){e.preventDefault();status.className='error';status.textContent='Por favor, completá un correo electrónico válido.';return}
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.textContent='ENVIANDO…';
+  status.className='';status.style.display='none';
+  // El servicio externo gestiona el envío y muestra su propia confirmación.
+});
+updateProgress();
+</script>
+</body>
+</html>
